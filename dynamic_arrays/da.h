@@ -55,27 +55,27 @@
 #define DA_INIT_CAP 256
 #endif // DA_INIT_CAP
 
-#ifndef DA_REALLOC(ptr, sz_old, sz_new)
+#ifndef DA_REALLOC
 #include <stdlib.h>
 #define DA_REALLOC(ptr, sz_old, sz_new) realloc(ptr, sz_new)
 #endif // DA_REALLOC
 
-#ifndef DA_FREE(ptr, sz)
+#ifndef DA_FREE
 #include <stdlib.h>
 #define DA_FREE(ptr, sz) free(ptr)
 #endif // DA_FREE
 
-#ifndef DA_MEMCPY(dest, src, sz)
+#ifndef DA_MEMCPY
 #include <string.h>
 #define DA_MEMCPY(dest, src, sz) memcpy(dest, src, sz)
 #endif // DA_MEMCPY
 
-#ifndef DA_ASSERT(cond)
+#ifndef DA_ASSERT
 #include <assert.h>
 #define DA_ASSERT(cond) assert(cond)
 #endif // DA_ASSERT
 
-#ifndef DA_SORT_ALG(ptr, item_count, item_size, compare_func)
+#ifndef DA_SORT_ALG
 #include <stdlib.h>
 #define DA_SORT_ALG(ptr, item_count, item_size, compare_func) qsort(ptr, item_count, item_size, compare_func)
 #endif // DA_SORT_ALG
@@ -96,7 +96,7 @@ do {                                                                            
             (da)->capacity <<= 1;                                                                  \
         }                                                                                          \
                                                                                                    \
-        (da)->items = DA_REALLOC((da)->items, cap_old, (da)->capacity * sizeof(*(da)->items))      \
+        (da)->items = DA_REALLOC((da)->items, cap_old, (da)->capacity * sizeof(*(da)->items));     \
     }                                                                                              \
 } while (0)
 
